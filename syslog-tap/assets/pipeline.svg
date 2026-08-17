@@ -1,0 +1,106 @@
+<svg viewBox="0 0 720 900" xmlns="http://www.w3.org/2000/svg" font-family="'Consolas','SF Mono',Menlo,monospace">
+
+  <rect width="720" height="900" fill="#0b0e11"/>
+  <rect x="20" y="20" width="680" height="860" rx="12" fill="#111418" stroke="#1f2937" stroke-width="1.5"/>
+  <rect x="20" y="20" width="680" height="42" rx="12" fill="#161b21"/>
+  <rect x="20" y="50" width="680" height="12" fill="#161b21"/>
+  <circle cx="44" cy="41" r="6" fill="#ff5f56"/>
+  <circle cx="64" cy="41" r="6" fill="#ffbd2e"/>
+  <circle cx="84" cy="41" r="6" fill="#27c93f"/>
+  <text x="360" y="46" text-anchor="middle" fill="#8a9099" font-size="12.5">syslog-tap — run.py</text>
+
+  <!-- step 1: log sources -->
+  <text x="48" y="100" fill="#00e0c6" font-size="14" font-weight="700">$ </text>
+  <text x="66" y="100" fill="#d5dbe3" font-size="14">tail /var/log/{syslog,auth.log,messages,secure}</text>
+  <rect x="48" y="114" width="130" height="30" rx="15" fill="#161b21"/>
+  <text x="63" y="134" fill="#9ca3af" font-size="11">📄 4 log sources</text>
+
+  <line x1="60" y1="160" x2="60" y2="196" stroke="#2a3038" stroke-width="1.5"/>
+  <circle cx="60" cy="196" r="4" fill="#00e0c6"/>
+
+  <!-- step 2: tap.py -> Python mark -> DuckDB mark -->
+  <text x="48" y="230" fill="#00e0c6" font-size="14" font-weight="700">$ </text>
+  <text x="66" y="230" fill="#d5dbe3" font-size="14">python tap.py</text>
+  <text x="66" y="248" fill="#6b7280" font-size="11">parses RFC 3164 lines, tags severity + event type</text>
+
+  <g transform="translate(500,202) scale(1.4)">
+    <path d="M11 0c-4.5 0-4.2 1.9-4.2 1.9v2h4.3v0.6H5c0 0-3 -0.3-3 4s2.6 4.4 2.6 4.4h1.6v-2.2c0 0-0.1-2.6 2.5-2.6h3.7c0 0 2.4 0 2.4-2.4V2.9c0 0 0.4-2.9-3.8-2.9z" fill="#3776AB"/>
+    <path d="M11 22c4.5 0 4.2-1.9 4.2-1.9v-2h-4.3v-0.6H17c0 0 3 0.3 3-4s-2.6-4.4-2.6-4.4h-1.6v2.2c0 0 0.1 2.6-2.5 2.6h-3.7c0 0-2.4 0-2.4 2.4v4.1c0 0-0.4 2.9 3.8 2.9z" fill="#FFD43B" transform="translate(-11,-3)"/>
+  </g>
+  <text x="580" y="222" fill="#4b5563" font-size="16">→</text>
+  <g transform="translate(615,204)">
+    <ellipse cx="14" cy="17" rx="14" ry="11" fill="#FFF000"/>
+    <circle cx="24" cy="10" r="7" fill="#FFF000"/>
+    <circle cx="27" cy="8" r="1.3" fill="#111"/>
+    <path d="M30,10 L38,7 L30,13 Z" fill="#FFA500"/>
+  </g>
+  <text x="637" y="256" text-anchor="middle" fill="#6b7280" font-size="9.5">DuckDB</text>
+
+  <line x1="60" y1="264" x2="60" y2="300" stroke="#2a3038" stroke-width="1.5"/>
+  <circle cx="60" cy="300" r="4" fill="#00e0c6"/>
+
+  <!-- step 3: analyze.py -->
+  <text x="48" y="334" fill="#00e0c6" font-size="14" font-weight="700">$ </text>
+  <text x="66" y="334" fill="#d5dbe3" font-size="14">python analyze.py</text>
+  <text x="66" y="352" fill="#6b7280" font-size="11">failed logins, service flaps, error spikes by hour</text>
+
+  <rect x="480" y="316" width="180" height="34" rx="17" fill="#161b21"/>
+  <text x="498" y="338" fill="#9ca3af" font-size="11">⚡ noise score (z-score)</text>
+
+  <line x1="60" y1="368" x2="60" y2="404" stroke="#2a3038" stroke-width="1.5"/>
+  <circle cx="60" cy="404" r="4" fill="#00e0c6"/>
+
+  <!-- step 4: report.py -->
+  <text x="48" y="438" fill="#00e0c6" font-size="14" font-weight="700">$ </text>
+  <text x="66" y="438" fill="#d5dbe3" font-size="14">python report.py</text>
+  <text x="66" y="456" fill="#6b7280" font-size="11">renders reports/latest.html, self-contained</text>
+
+  <rect x="480" y="420" width="160" height="34" rx="17" fill="#161b21"/>
+  <text x="498" y="442" fill="#9ca3af" font-size="11">🧾 latest.html</text>
+
+  <line x1="60" y1="472" x2="60" y2="508" stroke="#2a3038" stroke-width="1.5"/>
+  <circle cx="60" cy="508" r="4" fill="#00e0c6"/>
+
+  <!-- step 5: cron -->
+  <text x="48" y="542" fill="#00e0c6" font-size="14" font-weight="700">$ </text>
+  <text x="66" y="542" fill="#d5dbe3" font-size="14">./install-cron.sh</text>
+  <text x="66" y="560" fill="#6b7280" font-size="11">repeats the full sequence above, once every hour</text>
+
+  <g transform="translate(600,522)">
+    <circle r="17" fill="none" stroke="#00e0c6" stroke-width="2"/>
+    <line x1="0" y1="0" x2="0" y2="-10" stroke="#00e0c6" stroke-width="2" stroke-linecap="round"/>
+    <line x1="0" y1="0" x2="7" y2="4" stroke="#00e0c6" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <path d="M 640,542 Q 680,542 680,470 Q 680,260 640,230" fill="none" stroke="#2a3038" stroke-width="1.5" stroke-dasharray="4,4"/>
+  <text x="654" y="380" fill="#4b5563" font-size="9.5" transform="rotate(-90 654 380)">every hour</text>
+
+  <line x1="48" y1="600" x2="672" y2="600" stroke="#1f2937" stroke-width="1"/>
+
+  <text x="48" y="632" fill="#6b7280" font-size="11" letter-spacing="2">WHAT IT SURFACES</text>
+  <rect x="48" y="646" width="185" height="36" rx="18" fill="#161b21"/>
+  <text x="64" y="669" fill="#d5dbe3" font-size="11">🔐 failed logins</text>
+  <rect x="248" y="646" width="200" height="36" rx="18" fill="#161b21"/>
+  <text x="264" y="669" fill="#d5dbe3" font-size="11">🔄 service restarts</text>
+  <rect x="463" y="646" width="200" height="36" rx="18" fill="#161b21"/>
+  <text x="479" y="669" fill="#d5dbe3" font-size="11">🧠 memory pressure</text>
+
+  <!-- runs on: Arch mark, RedHat mark, Bash mark — all inline -->
+  <text x="48" y="726" fill="#6b7280" font-size="11" letter-spacing="2">RUNS ON</text>
+
+  <path d="M 62,740 L 76,772 L 68,772 L 62,758 L 56,772 L 48,772 Z" fill="#1793D1"/>
+  <text x="84" y="759" fill="#d5dbe3" font-size="12.5">Arch Linux</text>
+
+  <path d="M 238,762 Q 238,750 250,748 Q 262,750 262,762 Q 262,768 250,768 Q 238,768 238,762 Z" fill="#EE0000"/>
+  <rect x="240" y="746" width="20" height="4" fill="#EE0000"/>
+  <text x="266" y="759" fill="#d5dbe3" font-size="12.5">RHEL</text>
+
+  <rect x="380" y="748" width="28" height="20" rx="3" fill="#000000" stroke="#4EAA25" stroke-width="1.5"/>
+  <text x="385" y="763" fill="#4EAA25" font-size="12" font-weight="700">&gt;_</text>
+  <text x="416" y="759" fill="#d5dbe3" font-size="12.5">any systemd distro</text>
+
+  <text x="360" y="830" text-anchor="middle" fill="#4b5563" font-size="10.5">
+    one dependency: duckdb · zero servers · zero external services
+  </text>
+
+</svg>
