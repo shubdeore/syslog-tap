@@ -1,0 +1,13 @@
+db/
+reports/
+logs/
+
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+*.duckdb
+*.duckdb.wal
+
+.DS_Store
