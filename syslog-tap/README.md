@@ -1,4 +1,7 @@
 # syslog-tap
+<p align="center">
+  <img src="assets/pipeline.svg" alt="syslog-tap pipeline" width="700">
+</p>
 
 A small tool that parses Linux syslog files into DuckDB and gives you back
 an hourly HTML report instead of a wall of text. Built it because I kept
